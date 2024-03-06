@@ -16,12 +16,13 @@ class chatlistC extends GetxController{
   var selectedReceiver;
   var selectedSender;
   Timer? timer;
+
   void onInit() {
 
 
     getAllChatlist();
 
-    timer=Timer.periodic(Duration(seconds: 10), (Timer t) {
+    timer=Timer.periodic(Duration(seconds: 2), (Timer t) {
       getAllChatlist();
     });
 
@@ -65,6 +66,8 @@ class chatlistC extends GetxController{
       }
     });
   }
+
+
 
   void deleteJahannam(String roomID){
 

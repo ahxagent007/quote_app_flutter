@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:quote/bindings.dart';
+import 'package:quote/home/qoutepage.dart';
 import 'package:quote/logn/login.dart';
 import 'package:quote/sharedC.dart';
 
@@ -9,6 +10,7 @@ Future<void> main() async {
 
 
   runApp( MyApp());
+
 }
 
 class MyApp extends StatelessWidget{
@@ -25,8 +27,9 @@ class MyApp extends StatelessWidget{
       ),
 
       home:
-      ///(Get.find<SharedPreff>().sharedpreff.read('access')==null)?
-      Login()
+      (Get.find<SharedPreff>().sharedpreff.read('access')==null)?
+      Login():
+      QoutePage()
 
     );
   }

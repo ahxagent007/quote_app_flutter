@@ -15,7 +15,7 @@ class chatlist extends StatelessWidget{
         backgroundColor: Theme.of(context).primaryColor,
         foregroundColor: Theme.of(context).hintColor,
         leading: Container(),
-        title: Text("Chats".toUpperCase(),style: TextStyle(
+        title: Text("Magic".toUpperCase(),style: TextStyle(
             fontSize: 30,
             color: Theme.of(context).hintColor,
             fontWeight: FontWeight.w900,

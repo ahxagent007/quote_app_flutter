@@ -93,7 +93,7 @@ backgroundColor: Theme.of(context).primaryColor,
                               controller: Get.find<QoutePageC>().pass,
                               keyboardType: TextInputType.phone,
                               decoration:  InputDecoration(
-                                  hintText: "current password",
+                                  hintText: "Default code:123456",
                                   labelStyle: TextStyle(
                                       color: Theme.of(context).hintColor,
                                       fontFamily: 'money'
@@ -122,7 +122,7 @@ backgroundColor: Theme.of(context).primaryColor,
                                 ),
                                 onPressed: () async{
                                   Navigator.of(context).pop();
-                                  Get.find<QoutePageC>().verifyMagic();
+                                  Get.find<QoutePageC>().verifyMagic(context);
 
                                 },
                                 child: Text("ok",style: TextStyle(color:Theme.of(context).hintColor,fontFamily: 'money', fontSize: 20),)

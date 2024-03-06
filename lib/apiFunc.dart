@@ -3,8 +3,8 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 
-//String s="http://10.0.2.2:8000";
-String s="https://quote.alphacuetech.com";
+String s="http://10.0.2.2:8000";
+//String s="https://quote.alphacuetech.com";
 Future sendMail(String mail) async {
   String url = s+'/user/login/otp';
   Map<String, String> headers = {"Content-type": "application/json"};
@@ -271,5 +271,18 @@ Future delChat(String token,String roomID) async {
   var response = await http.delete(Uri.parse(url), headers: headers);
 
   return response;
+
+}
+
+Future sendQ(String token,String q,String b) async {
+
+  String url = s+'/quote/';
+  Map<String, String> headers = {"Content-type": "application/json", 'Accept': 'application/json', 'Authorization': 'Bearer $token'};
+  String json = '{"quote": "'+q+'","by": "'+b+'"}';
+  print(json);
+  var response = await http.post(Uri.parse(url),  headers: headers,body: json);
+
+  return response;
+
 
 }

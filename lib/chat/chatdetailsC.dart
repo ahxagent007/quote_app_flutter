@@ -18,7 +18,7 @@ class chatdetailsC extends GetxController{
       getAllMsg();
 
 
-      timer=Timer.periodic(Duration(seconds: 10), (Timer t) {
+      timer=Timer.periodic(Duration(seconds: 2), (Timer t) {
         getAllMsg();
       });
   }
