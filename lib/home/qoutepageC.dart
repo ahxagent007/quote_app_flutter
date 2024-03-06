@@ -90,15 +90,25 @@ class QoutePageC extends GetxController{
         pass.text="";
         String body = value.body.toString();
         var d=jsonDecode(body);
-        //print('eijjjjjjjjjjjjjjjjjjjjjjjjj'+d['page']);
+        print('eijjjjjjjjjjjjjjjjjjjjjjjjj'+d['page']);
         //savePress.value=false;
         if(d['page']=='magic'){
           Get.to(()=>chatlist());
         }
-        else{
+        else if(d['page']=='quote'){
 
           Get.to(()=>QuotoAdd());
         }
+        else{
+          Get.snackbar(
+            "Attention",
+            "Wrong pass".toUpperCase(),
+            backgroundColor: Colors.white,
+            snackPosition: SnackPosition.BOTTOM,
+
+          );
+        }
+
         // getAllchat(Get.find<SharedPreff>().sharedpreff.read('access').toString()).then((value) {
         //   String body = value.body.toString();
         //   var d=jsonDecode(body);

@@ -31,9 +31,21 @@ class OtpController extends GetxController{
         var d=jsonDecode(body);
         print('eijjjjjjjjjjjjjjjjjjjjjjjjj'+d.toString());
         savePress.value=false;
-        Get.find<SharedPreff>().sharedpreff.write('access', d['access']);
-        Get.find<SharedPreff>().sharedpreff.write('id', d['user']['id']);
-        Get.to(()=>QoutePage());
+        if(d['msg']=='Wrong OTP'){
+          Get.snackbar(
+            "Attention",
+            "Wrong Otp".toUpperCase(),
+            backgroundColor: Colors.white,
+            snackPosition: SnackPosition.BOTTOM,
+          );
+
+        }
+        else{
+          Get.find<SharedPreff>().sharedpreff.write('access', d['access']);
+          Get.find<SharedPreff>().sharedpreff.write('id', d['user']['id']);
+          Get.to(()=>QoutePage());
+        }
+
 
       }
       else{

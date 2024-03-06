@@ -22,9 +22,9 @@ class chatlistC extends GetxController{
 
     getAllChatlist();
 
-    timer=Timer.periodic(Duration(seconds: 2), (Timer t) {
-      getAllChatlist();
-    });
+    // timer=Timer.periodic(Duration(seconds: 2), (Timer t) {
+    //   getAllChatlist();
+    // });
 
   }
   void getAllChatlist(){

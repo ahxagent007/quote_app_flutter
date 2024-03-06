@@ -177,18 +177,18 @@ class ChatBox extends StatelessWidget{
 
               ),),
             ),
-            // Align(
-            //   alignment: Alignment.bottomRight,
-            //   child:  Text(t,style: TextStyle(
-            //       fontSize: 18,
-            //       color: Theme.of(context).hintColor,
-            //       fontWeight: FontWeight.w900,
-            //       // fontStyle: FontStyle.italic,
-            //       fontFamily: 'money'
-            //
-            //
-            //   ),),
-            // ),
+            Align(
+              alignment: Alignment.bottomRight,
+              child:  Text(data['created_time'],style: TextStyle(
+                  fontSize: 10,
+                  color: Theme.of(context).hintColor,
+                  fontWeight: FontWeight.w900,
+                  // fontStyle: FontStyle.italic,
+                  fontFamily: 'money'
+
+
+              ),),
+            ),
 
 
           ],
