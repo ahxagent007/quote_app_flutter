@@ -286,3 +286,16 @@ Future sendQ(String token,String q,String b) async {
 
 
 }
+
+Future getLastSeen(String token) async {
+
+  String url = s+'/magic/chat/last_seen';
+  Map<String, String> headers = {"Content-type": "application/json", 'Accept': 'application/json', 'Authorization': 'Bearer $token'};
+
+  print(json);
+  var response = await http.get(Uri.parse(url),  headers: headers);
+
+  return response;
+
+
+}

@@ -17,15 +17,32 @@ class chatDetails extends StatelessWidget{
         backgroundColor: Theme.of(context).primaryColor,
         foregroundColor: Theme.of(context).hintColor,
         leading: Container(),
-        title: Text("Magic".toUpperCase(),style: TextStyle(
-            fontSize: 30,
-            color: Theme.of(context).hintColor,
-            fontWeight: FontWeight.w900,
-            fontStyle: FontStyle.italic,
-            fontFamily: 'money'
+
+        title: Column(
+          children: [
+            Text("Magic".toUpperCase(),style: TextStyle(
+                fontSize: 25,
+                color: Theme.of(context).hintColor,
+                fontWeight: FontWeight.w900,
+                fontStyle: FontStyle.italic,
+                fontFamily: 'money'
 
 
-        ),),
+            ),),
+            Obx(() =>
+                Text(Get.find<chatdetailsC>().lastseen.value.toUpperCase(),style: TextStyle(
+                    fontSize: 15,
+                    color: Theme.of(context).hintColor,
+                    fontWeight: FontWeight.w900,
+                    fontStyle: FontStyle.italic,
+                    fontFamily: 'money'
+
+
+                ),)
+            )
+          ],
+        ),
+
         actions: [
 
         ],

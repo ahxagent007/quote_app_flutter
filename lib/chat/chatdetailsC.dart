@@ -11,6 +11,7 @@ import 'package:quote/sharedC.dart';
 
 class chatdetailsC extends GetxController{
   var chatsDet=[].obs;
+  var lastseen="".obs;
   TextEditingController msg=TextEditingController();
   Timer? timer;
   void onInit(){
@@ -27,6 +28,7 @@ class chatdetailsC extends GetxController{
   void onClose() {
     // TODO: implement onClose
     super.onClose();
+    lastSeen();
     timer?.cancel();
   }
 
@@ -36,6 +38,7 @@ class chatdetailsC extends GetxController{
         String body = value.body.toString();
         var d=jsonDecode(body);
         print(d);
+        lastseen.value=d["last_seen"];
         chatsDet.value= (d != null ? List.from(d["chats"]) : null)!;
 
       }
@@ -47,7 +50,7 @@ class chatdetailsC extends GetxController{
 
           "Attention",
           "Something went wrong".toUpperCase(),
-          backgroundColor: Get.theme.hintColor,
+          backgroundColor: Colors.white,
           snackPosition: SnackPosition.BOTTOM,
 
         );
@@ -77,7 +80,32 @@ class chatdetailsC extends GetxController{
 
           "Attention",
           "Something went wrong".toUpperCase(),
-          backgroundColor: Get.theme.hintColor,
+          backgroundColor: Colors.white,
+          snackPosition: SnackPosition.BOTTOM,
+
+        );
+      }
+    });
+  }
+  void lastSeen(){
+    getLastSeen(Get.find<SharedPreff>().sharedpreff.read('access').toString()).then((value) {
+      if(value.statusCode==200){
+        String body = value.body.toString();
+        var d=jsonDecode(body);
+        print(d);
+
+
+
+      }
+      else{
+        String body = value.body.toString();
+        var d=jsonDecode(body);
+        print(d);
+        Get.snackbar(
+
+          "Attention",
+          "Something went wrong".toUpperCase(),
+          backgroundColor: Colors.white,
           snackPosition: SnackPosition.BOTTOM,
 
         );

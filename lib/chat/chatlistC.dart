@@ -30,7 +30,14 @@ class chatlistC extends GetxController{
   void getAllChatlist(){
    getAllchat(Get.find<SharedPreff>().sharedpreff.read('access').toString()).then((value) {
      if(value.statusCode==401){
+       Get.snackbar(
 
+         "Attention",
+         "Something went wrong".toUpperCase(),
+         backgroundColor: Colors.white,
+         snackPosition: SnackPosition.BOTTOM,
+
+       );
      }
      else{
        String body = value.body.toString();
