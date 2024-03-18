@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:quote/chat/chatdetailsC.dart';
 import 'package:quote/sharedC.dart';
 
@@ -67,6 +68,12 @@ class chatDetails extends StatelessWidget{
                               alignment:Get.find<SharedPreff>().sharedpreff.read('id')==Get.find<chatdetailsC>().chatsDet.value[index]['sender']? Alignment.centerRight:Alignment.centerLeft,
                               child: ChatBox(Get.find<chatdetailsC>().chatsDet.value[index]),
                             ),
+                            Get.find<chatdetailsC>().sendmsgW.value?
+                        LoadingAnimationWidget.staggeredDotsWave(
+                        color: Theme.of(context).primaryColor,
+                        size: 30,
+                        ):
+                            Container()    ,
 
                             SizedBox(height: 10,),
                           ],

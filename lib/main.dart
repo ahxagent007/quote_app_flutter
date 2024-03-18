@@ -9,12 +9,27 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
 
-  runApp( MyApp());
+  runApp( MyAPP());
 
 }
+class MyAPP extends StatefulWidget{
+  @override
+  State<StatefulWidget> createState() {
+    // TODO: implement createState
+    return MyApp();
+  }
 
-class MyApp extends StatelessWidget{
+}
+class MyApp extends State<MyAPP>  {
   var c=Get.put(SharedPreff());
+
+  @override
+  void initState() {
+    // TODO: implement initState
+
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
@@ -29,7 +44,7 @@ class MyApp extends StatelessWidget{
       home:
       (Get.find<SharedPreff>().sharedpreff.read('access')==null)?
       Login():
-      QoutePage()
+      Qoute()
 
     );
   }

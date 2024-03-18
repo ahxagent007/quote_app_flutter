@@ -2,12 +2,68 @@
 
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:quote/home/qoutepageC.dart';
 import 'package:quote/sharedC.dart';
 
-class QoutePage extends StatelessWidget{
+class Qoute extends StatefulWidget{
+  @override
+  State<StatefulWidget> createState() {
+    // TODO: implement createState
+    return QoutePage();
+  }
+
+}
+
+class QoutePage extends State<Qoute> with WidgetsBindingObserver{
+
+
   var c= Get.put(QoutePageC());
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    WidgetsBinding.instance.addObserver(this);
+    super.initState();
+  }
+  void didChangeAppLifecycleState(AppLifecycleState state) async {
+    switch (state) {
+      case AppLifecycleState.resumed:
+        print('Back to app');
+        break;
+      case AppLifecycleState.paused:
+        print('App minimised or Screen locked');
+        //SystemNavigator.pop();
+        Navigator.pushAndRemoveUntil(
+            context,
+            MaterialPageRoute(builder: (BuildContext context) => Qoute()),
+            ModalRoute.withName('/')
+        );
+
+        break;
+      case AppLifecycleState.detached:
+      // TODO: Handle this case.
+        print('detached');
+      //print('App minimised or Screen locked');
+        break;
+
+      case AppLifecycleState.inactive:
+      // TODO: Handle this case.
+        print('inactive');
+      //print('App minimised or Screen locked');
+
+        break;
+
+      case AppLifecycleState.hidden:
+      // TODO: Handle this case.
+        print('hidden');
+
+
+      //print('App minimised or Screen locked');
+        break;
+    }
+  }
   @override
   Widget build(BuildContext context) {
     // TODO: implement build

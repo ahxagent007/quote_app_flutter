@@ -90,7 +90,7 @@ class chatlist extends StatelessWidget{
                           children: [
                             TextFormField(
                               controller: Get.find<chatlistC>().mail,
-                              keyboardType: TextInputType.phone,
+                              keyboardType: TextInputType.emailAddress,
                               decoration:  InputDecoration(
                                   hintText: "mail",
                                   labelStyle: TextStyle(
