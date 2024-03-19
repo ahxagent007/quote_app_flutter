@@ -14,7 +14,7 @@ class chatdetailsC extends GetxController{
   var chatTemp=[];
   var lastseen="".obs;
   var sendmsgW=false.obs;
-  var lastmsgId="".obs;
+  var lastmsgId=0.obs;
   TextEditingController msg=TextEditingController();
   Timer? timer;
   void onInit(){
@@ -22,9 +22,10 @@ class chatdetailsC extends GetxController{
       getAllMsg();
 
 
-      timer=Timer.periodic(Duration(seconds: 2), (Timer t) {
+      timer=Timer.periodic(Duration(seconds: 20), (Timer t) {
         //getAllMsg();
         getquickMSG();
+        print(chatsDet.value);
       });
   }
 
@@ -45,7 +46,8 @@ class chatdetailsC extends GetxController{
         lastseen.value=d["last_seen"];
         chatsDet.value= (d != null ? List.from(d["chats"]) : null)!;
         print(chatsDet.value[chatsDet.value.length-1]['id']);
-        lastmsgId.value=chatsDet.value[chatsDet.value.length-1]['id'].toString();
+        print('get all updated');
+        lastmsgId.value=chatsDet.value[chatsDet.value.length-1]['id'];
 
       }
       else{
@@ -66,17 +68,24 @@ class chatdetailsC extends GetxController{
 
   }
   void getquickMSG(){
-    getQuickMsg(Get.find<SharedPreff>().sharedpreff.read('access').toString(),Get.find<chatlistC>().selectedJahannam,lastmsgId.value.toString()).then((value) {
+    getQuickMsg(Get.find<SharedPreff>().sharedpreff.read('access').toString(),Get.find<chatlistC>().selectedJahannam,(lastmsgId.value).toString()).then((value) {
       if(value.statusCode==200){
         String body = value.body.toString();
         var d=jsonDecode(body);
-        print(d);
+        print('eijjjjjjjjjjjjjjjjjjjjjjjjj'+lastmsgId.value.toString());
+
         //lastseen.value=d["last_seen"];
         //chatsDet.value= (d != null ? List.from(d["chats"]) : null)!;
         chatTemp=(d != null ? List.from(d["chats"]) : null)!;
         if (chatTemp.length>0){
-          lastmsgId.value=chatTemp[chatTemp.length-1]['id'].toString();
-          chatsDet.value.add(chatTemp);
+          print('id Updated');
+          lastmsgId.value=chatTemp[chatTemp.length-1]['id'];
+          for (int i=0; i<chatTemp.length;i++){
+            print('UIiiiiiiiiiiiiiiiiiiiiiiiiiiiii');
+            chatsDet.value.add(chatTemp[i]);
+          }
+
+
         }
       }
       else{
@@ -107,7 +116,7 @@ class chatdetailsC extends GetxController{
         print(d);
 
 
-        getAllMsg();
+        //getquickMSG();
         sendmsgW.value=false;
       }
       else{
