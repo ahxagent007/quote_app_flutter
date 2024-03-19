@@ -22,10 +22,10 @@ class chatdetailsC extends GetxController{
       getAllMsg();
 
 
-      timer=Timer.periodic(Duration(seconds: 20), (Timer t) {
+      timer=Timer.periodic(Duration(seconds: 1), (Timer t) {
         //getAllMsg();
         getquickMSG();
-        print(chatsDet.value);
+        //print(chatsDet.value);
       });
   }
 
@@ -80,11 +80,13 @@ class chatdetailsC extends GetxController{
         if (chatTemp.length>0){
           print('id Updated');
           lastmsgId.value=chatTemp[chatTemp.length-1]['id'];
-          for (int i=0; i<chatTemp.length;i++){
-            print('UIiiiiiiiiiiiiiiiiiiiiiiiiiiiii');
-            chatsDet.value.add(chatTemp[i]);
-          }
+          // for (int i=0; i<chatTemp.length;i++){
+          //   print('UIiiiiiiiiiiiiiiiiiiiiiiiiiiiii');
+          //   chatsDet.value.add();
+          // }
 
+          chatsDet.value.addAll(chatTemp);
+          chatsDet.value=(List.from(chatsDet.value) )!;
 
         }
       }
