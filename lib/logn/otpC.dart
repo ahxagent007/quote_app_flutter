@@ -43,7 +43,7 @@ class OtpController extends GetxController{
         else{
           Get.find<SharedPreff>().sharedpreff.write('access', d['access']);
           Get.find<SharedPreff>().sharedpreff.write('id', d['user']['id']);
-          Get.to(()=>QoutePage());
+          Get.to(()=>Qoute());
         }
 
 
