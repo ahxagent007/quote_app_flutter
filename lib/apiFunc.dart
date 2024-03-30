@@ -3,8 +3,8 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 
-//String s="http://10.0.2.2:8000";
-String s="https://quote.alphacuetech.com";
+String s="http://10.0.2.2:8000";
+//String s="https://quote.alphacuetech.com";
 Future sendMail(String mail) async {
   String url = s+'/user/login/otp';
   Map<String, String> headers = {"Content-type": "application/json"};
@@ -307,6 +307,19 @@ Future getQuickMsg(String token,String roomID,String lastId) async {
 
   print(json);
   var response = await http.get(Uri.parse(url),  headers: headers);
+
+  return response;
+
+
+}
+
+Future delAccount(String token) async {
+
+  String url = s+'/user/account/delete';
+  Map<String, String> headers = {"Content-type": "application/json", 'Accept': 'application/json', 'Authorization': 'Bearer $token'};
+
+  print(json);
+  var response = await http.delete(Uri.parse(url),  headers: headers);
 
   return response;
 

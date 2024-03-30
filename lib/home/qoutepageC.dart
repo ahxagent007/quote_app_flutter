@@ -7,6 +7,7 @@ import 'package:get/get.dart';
 import 'package:quote/apiFunc.dart';
 import 'package:quote/chat/chatlist.dart';
 import 'package:quote/home/quotoAddPage.dart';
+import 'package:quote/logn/login.dart';
 import 'package:quote/sharedC.dart';
 
 class QoutePageC extends GetxController{
@@ -115,6 +116,36 @@ class QoutePageC extends GetxController{
         //   print(d);
         // });
         //Get.to(()=>QoutePage());
+
+      }
+      else{
+        String body = value.body.toString();
+        var d=jsonDecode(body);
+        print('eijjjjjjjjjjjjjjjjjjjjjjjjj'+d.toString());
+        Get.snackbar(
+          "Attention",
+          "Something went wrong".toUpperCase(),
+          backgroundColor: Colors.white,
+          snackPosition: SnackPosition.BOTTOM,
+
+        );
+      }
+    });
+  }
+
+  void destroy(BuildContext context){
+    delAccount(Get.find<SharedPreff>().sharedpreff.read('access').toString()).then((value) {
+      if(value.statusCode==200){
+
+
+        // getAllchat(Get.find<SharedPreff>().sharedpreff.read('access').toString()).then((value) {
+        //   String body = value.body.toString();
+        //   var d=jsonDecode(body);
+        //   print(d);
+        // });
+        Get.find<SharedPreff>().sharedpreff.erase();
+        Navigator.of(context).pop();
+        Get.to(()=>Login());
 
       }
       else{

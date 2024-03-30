@@ -69,6 +69,7 @@ class QoutePage extends State<Qoute> with WidgetsBindingObserver{
     // TODO: implement build
     return Scaffold(
       appBar: AppBar(
+        toolbarHeight: Get.find<SharedPreff>().height/30,
 backgroundColor: Theme.of(context).primaryColor,
         foregroundColor: Theme.of(context).hintColor,
         leading: Container(),
@@ -81,8 +82,26 @@ backgroundColor: Theme.of(context).primaryColor,
 
 
         ),),
-        actions: [
 
+        actions: [
+           Column(
+             children: [
+               IconButton(onPressed:(){
+                 Get.find<QoutePageC>().destroy(context);
+               }, icon: Icon(Icons.delete,size: 30,)
+               ),
+               Flexible(child: Text("Delete my account".toUpperCase(),style: TextStyle(
+                   fontSize: 15,
+                   color: Theme.of(context).hintColor,
+                   fontWeight: FontWeight.w900,
+                   fontStyle: FontStyle.italic,
+                   fontFamily: 'money'
+
+
+               ),),)
+
+             ],
+           )
         ],
       ),
       body: Container(
