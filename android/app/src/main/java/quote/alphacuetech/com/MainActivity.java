@@ -1,4 +1,4 @@
-package com.example.quote;
+package quote.alphacuetech.com;
 
 import io.flutter.embedding.android.FlutterActivity;
 
