@@ -68,12 +68,17 @@ class QoutePage extends State<Qoute> with WidgetsBindingObserver{
   Widget build(BuildContext context) {
     // TODO: implement build
     return Scaffold(
-      appBar: AppBar(
-        toolbarHeight: Get.find<SharedPreff>().height/30,
-backgroundColor: Theme.of(context).primaryColor,
-        foregroundColor: Theme.of(context).hintColor,
-        leading: Container(),
-        title: Text("Quotes".toUpperCase(),style: TextStyle(
+      appBar:PreferredSize(
+          preferredSize: Size(100, 70),
+         child: Container(
+           padding: EdgeInsets.only(top: 20,bottom: 20,left: 10),
+           decoration: BoxDecoration(
+             color: Theme.of(context).primaryColor,
+             borderRadius: BorderRadius.only(bottomLeft: Radius.circular(30),bottomRight: Radius.circular(0)), // Adjust the radius as needed
+           ),
+           child: Row(
+             children: [
+               Text("Quotes".toUpperCase(),style: TextStyle(
             fontSize: 30,
             color: Theme.of(context).hintColor,
             fontWeight: FontWeight.w900,
@@ -82,29 +87,119 @@ backgroundColor: Theme.of(context).primaryColor,
 
 
         ),),
-
-        actions: [
-           Column(
-             children: [
-               IconButton(onPressed:(){
-                 Get.find<QoutePageC>().destroy(context);
-               }, icon: Icon(Icons.delete,size: 30,)
-               ),
-               Flexible(child: Text("Delete my account".toUpperCase(),style: TextStyle(
-                   fontSize: 15,
-                   color: Theme.of(context).hintColor,
-                   fontWeight: FontWeight.w900,
-                   fontStyle: FontStyle.italic,
-                   fontFamily: 'money'
+               IconButton(
+                   onPressed: (){
+                     showDialog(
+                         context: context,
+                         barrierColor: Colors.grey.shade400.withOpacity(0.8),
+                         builder: (context1) {
 
 
-               ),),)
+                           return AlertDialog(
+                               backgroundColor: Theme.of(context).canvasColor,
+                               clipBehavior: Clip.antiAlias,
+                               elevation: 0,
+                               shape: RoundedRectangleBorder(
+                                 borderRadius: BorderRadius.circular(15),
+                               ),
 
+                               content:Container(
+                                 height: Get.find<SharedPreff>().height/15,
+                                 child: Column(
+                                   mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                   children: [
+                                   Text("Are you sure?",style: TextStyle(
+                                     fontSize: 18,
+                                     color: Color.fromRGBO(255, 153,132,1),
+                                     fontWeight: FontWeight.w900,
+                                     // fontStyle: FontStyle.italic,
+                                     fontFamily: 'money'
+
+
+                                 ),),
+                                     Row(
+                                       mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                       children: [
+                                         ElevatedButton(
+                                             style: ElevatedButton.styleFrom(
+                                               backgroundColor: Theme.of(context).primaryColor,
+                                               shape: StadiumBorder(),
+                                               shadowColor: Colors.black,
+                                             ),
+                                             onPressed: () async{
+                                               Navigator.of(context).pop();
+                                               Get.find<QoutePageC>().destroy(context);
+
+                                             },
+                                             child: Text("YES",style: TextStyle(color:Theme.of(context).hintColor,fontFamily: 'money', fontSize: 20),)
+                                         ),
+                                         ElevatedButton(
+                                             style: ElevatedButton.styleFrom(
+                                               backgroundColor: Theme.of(context).primaryColor,
+                                               shape: StadiumBorder(),
+                                               shadowColor: Colors.black,
+                                             ),
+                                             onPressed: () async{
+                                               Navigator.of(context).pop();
+
+
+                                             },
+                                             child: Text("NO",style: TextStyle(color:Theme.of(context).hintColor,fontFamily: 'money', fontSize: 20),)
+                                         )
+                                       ],
+                                     )
+                                   ],
+                                 ),
+
+                               )
+                           );
+                         });
+
+                   },
+                   icon: Icon(Icons.more_vert)
+               )
              ],
-           )
-        ],
+           ),
+         ),
       ),
+//       AppBar(
+//         toolbarHeight: Get.find<SharedPreff>().height/30,
+// backgroundColor: Theme.of(context).primaryColor,
+//         foregroundColor: Theme.of(context).hintColor,
+//         leading: Container(),
+//         title: Text("Quotes".toUpperCase(),style: TextStyle(
+//             fontSize: 30,
+//             color: Theme.of(context).hintColor,
+//             fontWeight: FontWeight.w900,
+//             fontStyle: FontStyle.italic,
+//             fontFamily: 'money'
+//
+//
+//         ),),
+//
+//         actions: [
+//            Column(
+//              children: [
+//                IconButton(onPressed:(){
+//                  Get.find<QoutePageC>().destroy(context);
+//                }, icon: Icon(Icons.delete,size: 30,)
+//                ),
+//                Flexible(child: Text("Delete my account".toUpperCase(),style: TextStyle(
+//                    fontSize: 15,
+//                    color: Theme.of(context).hintColor,
+//                    fontWeight: FontWeight.w900,
+//                    fontStyle: FontStyle.italic,
+//                    fontFamily: 'money'
+//
+//
+//                ),),)
+//
+//              ],
+//            )
+//         ],
+//       ),
       body: Container(
+        padding: EdgeInsets.only(left: 10,right: 10),
          child: SafeArea(
 
              child: SingleChildScrollView(
@@ -115,7 +210,13 @@ backgroundColor: Theme.of(context).primaryColor,
                    Column(
                        children:List.generate(Get.find<QoutePageC>().quotes.length, (index) {
 
-                         return   QBox(Get.find<QoutePageC>().quotes[index]);
+                         return   Column(
+                           children: [
+                             SizedBox(height: 5,),
+                             QBox(Get.find<QoutePageC>().quotes[index]),
+                             SizedBox(height: 5,),
+                           ],
+                         );
                        })
 
                    )
@@ -235,6 +336,7 @@ class QBox extends StatelessWidget{
 
     // TODO: implement build
     return  Container(
+
       child:Column(
         children: [
           SizedBox(
@@ -242,7 +344,8 @@ class QBox extends StatelessWidget{
           ),
           Container(
 
-            //height: height/6,
+            //height: height/10,
+
             alignment: Alignment.centerLeft,
             margin: EdgeInsets.only(left: 10,right: 10),
             padding: EdgeInsets.only(left: 10,right: 10,top: 10,bottom: 10),
@@ -250,7 +353,7 @@ class QBox extends StatelessWidget{
               alignment: Alignment.topLeft,
               child:  Text('\''+data['quote']+'\'',style: TextStyle(
                   fontSize: 18,
-                  color: Theme.of(context).primaryColor,
+                  color: Theme.of(context).hintColor,
                   fontWeight: FontWeight.w900,
                   // fontStyle: FontStyle.italic,
                   fontFamily: 'money'
@@ -258,20 +361,14 @@ class QBox extends StatelessWidget{
 
               ),),
             ),
-            decoration:  BoxDecoration(
-              border: Border.all(color: Theme.of(context).primaryColor,width: 2),
-              color:  Colors.white,
-              borderRadius: BorderRadius.all(Radius.circular(15)),
 
-
-            ),
           ),
           Container(
             child:  Align(
               alignment: Alignment.center,
               child:  Text("-"+data['by'],style: TextStyle(
                   fontSize: 18,
-                  color: Theme.of(context).primaryColor,
+                  color: Theme.of(context).hintColor,
                   fontWeight: FontWeight.w900,
                   // fontStyle: FontStyle.italic,
                   fontFamily: 'money'
@@ -279,12 +376,20 @@ class QBox extends StatelessWidget{
 
               ),),
             ),
+
           ),
           SizedBox(
             height: 5,
           ),
         ],
       ) ,
+      decoration:  BoxDecoration(
+        //border: Border.all(color: Theme.of(context).primaryColor,width: 2),
+        color:  Theme.of(context).cardColor,
+        borderRadius: BorderRadius.all(Radius.circular(15)),
+
+
+      ),
     );
   }
 

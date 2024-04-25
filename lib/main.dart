@@ -36,9 +36,10 @@ class MyApp extends State<MyAPP>  {
     return GetMaterialApp(
       initialBinding:  Allbindings(),
       theme: ThemeData(
-        primaryColor: Color.fromRGBO(255, 153,132,1),
-        canvasColor: Color.fromRGBO(18, 19,19,1),
+        primaryColor: Color.fromRGBO(145, 236, 70,1),
+        canvasColor: Color.fromRGBO(21, 22, 26,1),
         hintColor: Color.fromRGBO(0, 0,0,1),
+        cardColor: Color.fromRGBO(247, 247, 247,1),
       ),
 
       home:
